@@ -6,24 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather</title>
 
+    <!-- Semantic UI CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
         integrity="sha256-9mbkOfVho3ZPXfM7W8sV2SndrGDuh7wuyLjtsWeTI1Q=" crossorigin="anonymous" />
+
+    <!-- External CSS -->
+    <link rel="stylesheet" type="text/css" href="./styles.css">
 </head>
 
 <body>
-    <div class="ui grid">
-        <div class="tweleve wide column">
-            <h1>Weather</h1>
-            <form action="">
+    <div class="ui container centered grid">
+        <header id="top">
+            <div class="column row">
+                <div class="column">
+                    <h1>Weather</h1>
+                    <p>Search for weather information at any city worldwide!</p>
+                </div>
+            </div>
+
+            <div class="column row" style="margin-top: 20px;">
                 <div class="ui icon input">
+                    <form action=""></form>
                     <input type="text" placeholder="Search City...">
                     <i class="search icon"></i>
+                    </form>
                 </div>
-            </form>
+
+            </div>
+        </header>
+
+        <div class="column row">
+            <div class="column">
+                <h2 class="cityName">London</h2>
+            </div>
+
         </div>
-        <!-- Semantic UI -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"
-            integrity="sha256-t8GepnyPmw9t+foMh3mKNvcorqNHamSKtKRxxpUEgFI=" crossorigin="anonymous"></script>
+
+
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"
+        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <!-- Semantic UI JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"
+        integrity="sha256-t8GepnyPmw9t+foMh3mKNvcorqNHamSKtKRxxpUEgFI=" crossorigin="anonymous"></script>
 
 </body>
+
 </html>
