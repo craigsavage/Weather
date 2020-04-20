@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+        integrity="sha256-9mbkOfVho3ZPXfM7W8sV2SndrGDuh7wuyLjtsWeTI1Q=" crossorigin="anonymous" />
 </head>
+
 <body>
-    <h1>Weather</h1>
-    <form action="">
-        <input type="text" name="city" placeholder="Enter a city">
-    </form>
+    <div class="ui grid">
+        <div class="tweleve wide column">
+            <h1>Weather</h1>
+            <form action="">
+                <div class="ui icon input">
+                    <input type="text" placeholder="Search City...">
+                    <i class="search icon"></i>
+                </div>
+            </form>
+        </div>
+        <!-- Semantic UI -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"
+            integrity="sha256-t8GepnyPmw9t+foMh3mKNvcorqNHamSKtKRxxpUEgFI=" crossorigin="anonymous"></script>
+
 </body>
 </html>
