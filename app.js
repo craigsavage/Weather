@@ -3,27 +3,42 @@ const express = require('express'),
 
 const https = require('https');
 
+// Set templating engine
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
+// Allow public access to paths for js, css, etc
+app.use(express.static('public'))
+
+// Bodyparser
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 app.get('/', (req, res) => {
-    // const url = 'https://api.openweathermap.org/data/2.5/weather?q=London&units=metric&appid=812a0897dff7073fd0de02bdb7c87b01';
-    // https.get(url, (response) => {
-    //     console.log('Status Code: ' + response.statusCode);
+    const url = 'https://api.openweathermap.org/data/2.5/weather?q=London&units=metric&appid=812a0897dff7073fd0de02bdb7c87b01';
 
-    //     response.on('data', (data) => {
-    //         const weatherData = JSON.parse(data);
+    https.get(url, (response) => {
+        console.log('Status Code: ' + response.statusCode);
 
-    //         const city = weatherData.name;
-    //         const temperature = weatherData.main.temp;
-    //         const feelsLike = weatherData.main.feels_like;
-    //         const weatherDesc = weatherData.weather[0].description;
+        response.on('data', (data) => {
+            const weatherData = JSON.parse(data);
 
-    //         console.log(`City: ${city}.`);
-    //         console.log(`Temperature: ${temperature} degrees Celcius.`);
-    //         console.log(`Feels Like: ${feelsLike} degrees Celcius.`);
-    //         console.log(`${weatherDesc}`);
-    //     })
-    // })
+            const weather = {
+                city: weatherData.name,
+                icon: weatherData.weather[0].icon,
+                temperature: weatherData.main.temp,
+                feelsLike: weatherData.main.feels_like,
+                weatherDesc: weatherData.weather[0].description
+            };
 
-    res.sendFile(__dirname + '/index.html');
+            console.log(`City: ${weather.city}.`);
+            console.log(`Temperature: ${weather.temperature} degrees Celcius.`);
+            console.log(`Feels Like: ${weather.feelsLike} degrees Celcius.`);
+            console.log(`${weather.weatherDesc}`);
+
+            res.render('index', {weather: weather});
+        });
+    });
 });
 
 // Server
