@@ -16,7 +16,13 @@ app.use(express.urlencoded({ extended: false }));
 
 // Routes
 app.get('/', (req, res) => {
-    const query = 'London';
+    const weatherDisplay = false;
+    res.render('index', {weatherDisplay: weatherDisplay});
+});
+
+app.post('/', (req, res) => {
+    const weatherDisplay = true;
+    const query = req.body.city;
     const apiKey = '812a0897dff7073fd0de02bdb7c87b01'; // This is a free api key
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${query}&units=metric&appid=${apiKey}`;
 
@@ -34,12 +40,9 @@ app.get('/', (req, res) => {
                 humidity: weatherData.main.humidity,
                 weatherDesc: weatherData.weather[0].description
             };
-            res.render('index', {weather: weather});
+            res.render('index', {weather: weather, weatherDisplay: weatherDisplay});
         });
     });
-});
-
-app.post('/', (req, res) => {
     console.log(req.body.city)
 });
 
