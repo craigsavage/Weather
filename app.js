@@ -17,7 +17,8 @@ app.use(express.urlencoded({ extended: false }));
 // Routes
 app.get('/', (req, res) => {
     const weatherDisplay = false;
-    res.render('index', {weatherDisplay: weatherDisplay});
+    const status = 0;
+    res.render('index', {weatherDisplay: weatherDisplay, status: status});
 });
 
 app.post('/', (req, res) => {
@@ -31,19 +32,31 @@ app.post('/', (req, res) => {
 
         response.on('data', (data) => {
             const weatherData = JSON.parse(data);
+            const status = Number(weatherData.cod);
 
-            const weather = {
-                city: weatherData.name,     
-                imageURL: `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`,
-                temperature: weatherData.main.temp,
-                feelsLike: weatherData.main.feels_like,
-                humidity: weatherData.main.humidity,
-                weatherDesc: weatherData.weather[0].description
-            };
-            res.render('index', {weather: weather, weatherDisplay: weatherDisplay});
+            if(status === 200) {
+                // Valid city searches
+                const weather = {
+                    city: weatherData.name,     
+                    imageURL: `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`,
+                    temperature: weatherData.main.temp,
+                    feelsLike: weatherData.main.feels_like,
+                    humidity: weatherData.main.humidity,
+                    weatherDesc: weatherData.weather[0].description
+                };
+                
+                res.render('index', {weather: weather, weatherDisplay: weatherDisplay, status: status});
+            } else {
+                // Invalid city searches
+                const weather = {
+                    message: weatherData.message
+                }
+                console.log(weather.message)
+                res.render('index', {weather: weather, weatherDisplay: weatherDisplay, status: status});
+            }   
         });
     });
-    console.log(req.body.city)
+    console.log(`City: ${req.body.city}`)
 });
 
 // Server

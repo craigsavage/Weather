@@ -33,6 +33,12 @@ a:hover {
     text-transform: capitalize;
 }
 
+.searchError {
+    color: rgb(201, 73, 73);
+    text-align: center;
+    text-transform: capitalize;
+}
+
 #top { 
     margin-top: 100px;
 }

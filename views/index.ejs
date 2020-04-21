@@ -34,7 +34,7 @@
             </div>
         </header>
         
-        <% if(weatherDisplay) { %>
+        <% if(weatherDisplay && status === 200) { %>
         <div id="result" class="column row">
             <div class="column">
                 <h2 class="cityName">Weather For <span><%=weather.city%></span>!</h2>
@@ -66,8 +66,15 @@
                 </div>
             </div>
         </div>
+        <% } else if(weatherDisplay && status === 404) { %>
+        <div id="result" class="column row">
+            <div class="column">
+                <h2 class="searchError"><%=weather.message%>!</h2>
+            </div>
+        </div>
         <% } %>
 
+        <!-- Shameless Github Plug :) -->
         <div id="footer" class="column row">
             <p>Made by: Craig Savage |
                 <a href="https://github.com/craigsavage/Weather"><i class="github icon"></i> Source Code</a></p>
@@ -82,5 +89,4 @@
         integrity="sha256-t8GepnyPmw9t+foMh3mKNvcorqNHamSKtKRxxpUEgFI=" crossorigin="anonymous"></script>
 
 </body>
-
 </html>
