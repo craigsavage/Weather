@@ -24,26 +24,52 @@
                 </div>
             </div>
 
-            <div class="column row" style="margin-top: 20px;">
-                <div class="ui icon input">
-                    <form action=""></form>
-                    <input type="text" placeholder="Search City...">
-                    <i class="search icon"></i>
-                    </form>
-                </div>
-
+            <div class="column row searchBox">
+                <form action="/" method="POST">
+                    <div class="ui icon input">
+                        <input type="text" name="city" placeholder="Search City...">
+                        <i class="search icon"></i>
+                    </div>
+                </form>
             </div>
         </header>
 
-        <div class="column row">
+        <div id="result" class="column row">
             <div class="column">
-                <img src="" alt="">
                 <h2 class="cityName">Weather For <span><%=weather.city%></span>!</h2>
-            </div>
 
+                <div class="ui segment">
+                    <div>
+                        <h3 class="weatherDescription"><%=weather.weatherDesc%>
+                            <img class="ui right spaced image weatherImage" src="<%=weather.imageURL%>">
+                        </h3>
+
+                        <table class="ui definition table">
+                            <tbody>
+                                <tr>
+                                    <td class="collapsing">Temperature</td>
+                                    <td><%=weather.temperature%>°C</td>
+                                </tr>
+                                <tr>
+                                    <td class="collapsing">Feels Like</td>
+                                    <td><%=weather.feelsLike%>°C</td>
+                                </tr>
+                                <tr>
+                                    <td class="collapsing">Humidity</td>
+                                    <td><%=weather.humidity%></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
         </div>
 
-
+        <div id="footer" class="column row">
+            <p>Made by: Craig Savage |
+                <a href="https://github.com/craigsavage/Weather"><i class="github icon"></i> Source Code</a></p>
+        </div>
     </div>
 
     <!-- jQuery -->

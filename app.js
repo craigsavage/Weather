@@ -14,8 +14,11 @@ app.use(express.static('public'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Routes
 app.get('/', (req, res) => {
-    const url = 'https://api.openweathermap.org/data/2.5/weather?q=London&units=metric&appid=812a0897dff7073fd0de02bdb7c87b01';
+    const query = 'London';
+    const apiKey = '812a0897dff7073fd0de02bdb7c87b01'; // This is a free api key
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${query}&units=metric&appid=${apiKey}`;
 
     https.get(url, (response) => {
         console.log('Status Code: ' + response.statusCode);
@@ -24,21 +27,20 @@ app.get('/', (req, res) => {
             const weatherData = JSON.parse(data);
 
             const weather = {
-                city: weatherData.name,
-                icon: weatherData.weather[0].icon,
+                city: weatherData.name,     
+                imageURL: `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`,
                 temperature: weatherData.main.temp,
                 feelsLike: weatherData.main.feels_like,
+                humidity: weatherData.main.humidity,
                 weatherDesc: weatherData.weather[0].description
             };
-
-            console.log(`City: ${weather.city}.`);
-            console.log(`Temperature: ${weather.temperature} degrees Celcius.`);
-            console.log(`Feels Like: ${weather.feelsLike} degrees Celcius.`);
-            console.log(`${weather.weatherDesc}`);
-
             res.render('index', {weather: weather});
         });
     });
+});
+
+app.post('/', (req, res) => {
+    console.log(req.body.city)
 });
 
 // Server

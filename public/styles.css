@@ -1,12 +1,46 @@
+:root {
+    --color-coolBlue: rgb(97, 189, 226);
+}
+
 body {
     background-color: #F3F3F3;
     color: slategrey;
 }
 
+a {
+    color: var(--color-coolBlue);
+}
+
+a:hover {
+    color: var(--color-coolBlue);
+    text-decoration: none;
+}
+
+.searchBox {
+    margin-top: 20px;
+}
+
 .cityName span {
-    color: rgb(97, 189, 226);
+    color: var(--color-coolBlue);
+}
+
+.weatherImage {
+    /* display: inline-block; */
+    width: 50px;
+}
+
+.weatherDescription {
+    text-transform: capitalize;
 }
 
 #top { 
     margin-top: 100px;
+}
+
+#result {
+    margin-top: 50px;
+}
+
+#footer {
+    margin: 50px;
 }
